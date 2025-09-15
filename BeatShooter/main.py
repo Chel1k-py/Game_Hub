@@ -1,5 +1,7 @@
 import json
 import os
+import sys
+import traceback
 from pygame.sprite import Group
 from screeninfo import get_monitors
 from aim import Aim
@@ -11,24 +13,36 @@ import settings_stats
 from hearts import Hearts
 from score import Score
 
+# ======================
+# Обработчик ошибок
+# ======================
+def excepthook(exc_type, exc_value, exc_tb):
+    traceback.print_exception(exc_type, exc_value, exc_tb)
+    input("\nПроизошла ошибка. Нажмите Enter, чтобы выйти...")
+
+sys.excepthook = excepthook
+
+# ======================
+# Tkinter
+# ======================
 monitor = get_monitors()[0]
 master_root = tk.Tk()
 master_root.withdraw()
 
-print("+")
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def PATH_FILE(NAME):
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    STATS_PATH = os.path.join(BASE_DIR, f"{NAME}")
-    return STATS_PATH
+    return os.path.join(BASE_DIR, NAME)
 
+# ======================
+# Основной запуск игры
+# ======================
 def run():
-
     pygame.init()
     master = pygame.display.set_mode((monitor.width // 4, monitor.height // 2))
-    pygame.display.set_caption("Beat Shooter, record:{x}".format(x = settings_stats.stat['record']))
+    pygame.display.set_caption("Beat Shooter, record:{x}".format(x=settings_stats.stat['record']))
     settings_stats.update_stat()
+
     aim = Aim(master)
     hearts = Hearts(master)
     score = Score(master)
@@ -48,6 +62,7 @@ def run():
         run_update_enemies(enemies, followers, effects_group)
         update_display(master, aim, enemies, followers, effects_group, hearts, score)
         pygame.time.Clock().tick(stat["fps"])
+
         if stat['heart'] == 0:
             stat["running"] = False
             if stat["score"] > stat["record"]:
@@ -61,26 +76,16 @@ def run():
     pygame.display.quit()
 
 def ask_to_continue():
-    print("+")
     return tk.messagebox.askyesno("Игра", "Начинаем?")
 
-print("+")
 def kmain():
     while True:
-        print("+")
         if ask_to_continue():
             run()
         else:
             break
-
     master_root.destroy()
 
 if __name__ == "__main__":
     kmain()
     input("Нажми Enter, чтобы выйти...")
-
-
-
-
-
-
