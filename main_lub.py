@@ -3,23 +3,23 @@ from tkinter import Label
 from PIL import Image, ImageTk
 import os
 
-WINDOW_TITLE = "Game Hub"
-IMAGE_PATH = "img/b_s.png"
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-FILE_PATH = os.path.join(BASE_DIR, "BeatShooter", "main.py")
+title = "Game Hub"
+image_path = "img/b_s.png"
+base = os.path.dirname(os.path.abspath(__file__))
+file_path = os.path.join(base, "BeatShooter", "dist", "main.exe")
 
 def open_file(event=None):
-    os.startfile(FILE_PATH)
+    os.startfile(file_path)
 
 root = tk.Tk()
-root.title(WINDOW_TITLE)
+root.title(title)
 root.geometry("400x400")
 root.resizable(False, False)
 
-title_label = tk.Label(root, text="Добро пожаловать в игру!", font=("Arial", 18))
+title_label = tk.Label(root, text="Hello, world!", font=(None, 18))
 title_label.pack(pady=20)
 
-original_image = Image.open(IMAGE_PATH)
+original_image = Image.open(image_path)
 resized_image = original_image.resize((200, 100))
 photo = ImageTk.PhotoImage(resized_image)
 
