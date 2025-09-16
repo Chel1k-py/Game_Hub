@@ -50,7 +50,7 @@ def show_info(game):
 
     else:
 
-        plug = Label(r_frame, text="Нет картинки", width=25, height=10, bg="gray")
+        plug = Label(r_frame, text="Нет картинки", width=25, height=10, bg="#808080")
         plug.pack(pady=10)
 
     label = tk.Label(r_frame, text=game["name"], font=(None, 14))
@@ -95,7 +95,7 @@ def location(container, games_l, columns=2):
 
         else:
 
-            plug = Label(master, text="Нет картинки", width=20, height=5, bg="gray")
+            plug = Label(master, text="Нет картинки", width=20, height=5, bg="#808080")
             plug.pack()
 
         title_l = tk.Label(master, text=game["name"], font=(None, 12))
@@ -107,13 +107,13 @@ root.title(title)
 root.geometry("1000x500")
 root.resizable(False, False)
 
-l_frame = tk.Frame(root, width=600, bg="white")
+l_frame = tk.Frame(root, width=600, bg="#FFFFFF")
 l_frame.pack(side="left", fill="both", expand=True)
 
-r_frame = tk.Frame(root, width=400, bg="lightgray")
+r_frame = tk.Frame(root, width=400, bg="#D3D3D3")
 r_frame.pack(side="right", fill="both", expand=True)
 
-title1 = tk.Label(l_frame, text="Выбери игру:", font=(None, 18))
+title1 = tk.Label(l_frame, text="Hello, world!", font=(None, 18))
 title1.pack(pady=20)
 
 master = tk.Frame(l_frame)
