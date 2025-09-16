@@ -1,15 +1,14 @@
-import json, os
+import os, sys, json
 
-def PATH_FILE(NAME):
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    STATS_PATH = os.path.join(BASE_DIR, f"{NAME}")
-    return STATS_PATH
+def resource_path(relative_path):
+    """Возвращает корректный путь к ресурсам и при запуске .py, и при запуске .exe"""
+    if hasattr(sys, '_MEIPASS'):
+        base_path = sys._MEIPASS   # папка, куда PyInstaller распаковывает временные файлы
+    else:
+        base_path = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(base_path, relative_path)
 
 def update_stat():
     global stat
-    out_file = open(PATH_FILE("stats.json"), "r")
-    stat = json.load(out_file)
-    out_file.close()
-
-
-update_stat()
+    with open(resource_path("stats.json"), "r") as out_file:
+        stat = json.load(out_file)
