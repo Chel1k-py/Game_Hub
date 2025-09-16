@@ -13,18 +13,7 @@ import settings_stats
 from hearts import Hearts
 from score import Score
 
-# ======================
-# Обработчик ошибок
-# ======================
-def excepthook(exc_type, exc_value, exc_tb):
-    traceback.print_exception(exc_type, exc_value, exc_tb)
-    input("\nПроизошла ошибка. Нажмите Enter, чтобы выйти...")
 
-sys.excepthook = excepthook
-
-# ======================
-# Tkinter
-# ======================
 monitor = get_monitors()[0]
 master_root = tk.Tk()
 master_root.withdraw()
@@ -34,9 +23,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 def PATH_FILE(NAME):
     return os.path.join(BASE_DIR, NAME)
 
-# ======================
-# Основной запуск игры
-# ======================
+
 def run():
     pygame.init()
     master = pygame.display.set_mode((monitor.width // 4, monitor.height // 2))
@@ -88,4 +75,3 @@ def kmain():
 
 if __name__ == "__main__":
     kmain()
-    input("Нажми Enter, чтобы выйти...")
