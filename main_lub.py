@@ -73,9 +73,9 @@ def show_info(game):
         Label(r_frame, text="Игра недоступна").pack(pady=10)
 
 
-def location(container, game_list, columns=2):
+def location(container, games_l, columns=2):
 
-    for i, game in enumerate(game_list):
+    for i, game in enumerate(games_l):
 
         row = i // columns
         col = i % columns
