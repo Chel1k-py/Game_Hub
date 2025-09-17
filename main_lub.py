@@ -11,11 +11,12 @@ games = [
     {
         "name": "BeatShooter",
         "img": "img/b_s.png",
-        "exe": os.path.join(base, "BeatShooter", "dist", "main.exe")
+        "exe": os.path.join(base, "BeatShooter", "dist", "main.exe"),
+        "desc": "Игра на скорость реакции"
     },
-    {"name": "stub", "img": None, "exe": None},
-    {"name": "stub", "img": None, "exe": None},
-    {"name": "stub", "img": None, "exe": None},
+    {"name": "stub", "img": None, "exe": None, "desc": None},
+    {"name": "stub", "img": None, "exe": None, "desc": None},
+    {"name": "stub", "img": None, "exe": None, "desc": None},
 ]
 
 
@@ -55,6 +56,10 @@ def show_info(game):
 
     label = tk.Label(r_frame, text=game["name"], font=(None, 14))
     label.pack(pady=5)
+
+    desc = game.get("desc", "Описание отсутствует")
+    desc_l = tk.Label(r_frame, text=desc, wraplength=300, justify="left", bg="lightgray")
+    desc_l.pack(pady=5)
 
     if game["exe"]:
 
